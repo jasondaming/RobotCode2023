@@ -7,6 +7,14 @@
 
 package org.littletonrobotics.frc2023;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Threads;
 import edu.wpi.first.wpilibj.Timer;
@@ -128,10 +136,30 @@ public class Robot extends LoggedRobot {
     robotContainer = new RobotContainer();
   }
 
+  private double revArmAngle = 0.0;
+
   @Override
   public void robotPeriodic() {
     Threads.setCurrentThreadPriority(true, 99);
     CommandScheduler.getInstance().run();
+
+    // Log REV starter bot component poses
+    revArmAngle += robotContainer.handheldOI.getRightDriveX() * 0.05;
+    revArmAngle =
+        MathUtil.clamp(revArmAngle, Units.degreesToRadians(-210.0), Units.degreesToRadians(30.0));
+
+    var armPose = new Pose3d(0.303, 0.0, 0.742, new Rotation3d(0.0, revArmAngle, 0.0));
+    var endPose =
+        armPose.transformBy(
+            new Transform3d(
+                new Translation3d(0.712, 0.0, 0.0), armPose.getRotation().unaryMinus()));
+    Logger.getInstance().recordOutput("ComponentPoses", armPose, endPose);
+
+    Logger.getInstance()
+        .recordOutput(
+            "Odometry/MultiPoses",
+            new Pose2d(),
+            new Pose2d(3.0, 1.0, Rotation2d.fromDegrees(-90.0)));
 
     // Check logging fault
     logReceiverQueueAlert.set(Logger.getInstance().getReceiverQueueFault());

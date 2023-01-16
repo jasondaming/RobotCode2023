@@ -20,22 +20,22 @@ public class SingleHandheldOI extends HandheldOI {
 
   @Override
   public double getLeftDriveX() {
-    return -controller.getLeftY();
+    return -controller.getRawAxis(1);
   }
 
   @Override
   public double getLeftDriveY() {
-    return -controller.getLeftX();
+    return -controller.getRawAxis(0);
   }
 
   @Override
   public double getRightDriveX() {
-    return -controller.getRightY();
+    return -controller.getRawAxis(3);
   }
 
   @Override
   public double getRightDriveY() {
-    return -controller.getRightX();
+    return -controller.getRawAxis(2);
   }
 
   @Override

@@ -44,7 +44,7 @@ public class RobotContainer {
 
   // OI objects
   private OverrideOI overrideOI = new OverrideOI();
-  private HandheldOI handheldOI = new HandheldOI();
+  public HandheldOI handheldOI = new HandheldOI();
 
   // Choosers
   private final LoggedDashboardChooser<Command> autoChooser =
@@ -108,9 +108,9 @@ public class RobotContainer {
         new DriveWithJoysticks(
             drive,
             () -> handheldOI.getLeftDriveX(),
-            () -> handheldOI.getLeftDriveY(),
+            () -> 0.0,
             () -> handheldOI.getRightDriveY(),
-            () -> overrideOI.getRobotRelative()));
+            () -> true));
     aprilTagVision.setDataInterfaces(drive::getPose, drive::addVisionData);
 
     // Set up auto routines
