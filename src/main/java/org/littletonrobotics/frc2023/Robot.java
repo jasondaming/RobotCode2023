@@ -18,6 +18,11 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Threads;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import java.util.HashMap;
@@ -137,6 +142,30 @@ public class Robot extends LoggedRobot {
   }
 
   private double revArmAngle = 0.0;
+  private Mechanism2d revArmMechanism = new Mechanism2d(2, 2);
+  private MechanismRoot2d revArmMechanismRoot = revArmMechanism.getRoot("robot", 1, 0.1);
+  private MechanismLigament2d revBaseObject =
+      revArmMechanismRoot.append(
+          new MechanismLigament2d("base", 0.742, 90.0, 5, new Color8Bit(Color.kGray)));
+  private MechanismLigament2d revArmObject =
+      revBaseObject.append(
+          new MechanismLigament2d("arm", 0.712, 0.0, 3, new Color8Bit(Color.kGray)));
+  private MechanismLigament2d revIntakeObject =
+      revArmObject.append(
+          new MechanismLigament2d("intake", 0.25, 0.0, 3, new Color8Bit(Color.kGray)));
+
+  private Mechanism2d adjustedRevArmMechanism = new Mechanism2d(2, 2);
+  private MechanismRoot2d adjustedRevArmMechanismRoot =
+      adjustedRevArmMechanism.getRoot("robot", 1, 0.1);
+  private MechanismLigament2d adjustedRevBaseObject =
+      adjustedRevArmMechanismRoot.append(
+          new MechanismLigament2d("base", 0.742, 90.0, 3, new Color8Bit(Color.kOrange)));
+  private MechanismLigament2d adjustedRevArmObject =
+      adjustedRevBaseObject.append(
+          new MechanismLigament2d("arm", 0.712, 0.0, 1, new Color8Bit(Color.kOrange)));
+  private MechanismLigament2d adjustedRevIntakeObject =
+      adjustedRevArmObject.append(
+          new MechanismLigament2d("intake", 0.25, 0.0, 1, new Color8Bit(Color.kOrange)));
 
   @Override
   public void robotPeriodic() {
@@ -146,14 +175,22 @@ public class Robot extends LoggedRobot {
     // Log REV starter bot component poses
     revArmAngle += robotContainer.handheldOI.getRightDriveX() * 0.05;
     revArmAngle =
-        MathUtil.clamp(revArmAngle, Units.degreesToRadians(-210.0), Units.degreesToRadians(30.0));
+        MathUtil.clamp(revArmAngle, Units.degreesToRadians(-30.0), Units.degreesToRadians(210.0));
 
-    var armPose = new Pose3d(0.303, 0.0, 0.742, new Rotation3d(0.0, revArmAngle, 0.0));
+    var armPose = new Pose3d(0.303, 0.0, 0.742, new Rotation3d(0.0, -revArmAngle, 0.0));
     var endPose =
         armPose.transformBy(
             new Transform3d(
                 new Translation3d(0.712, 0.0, 0.0), armPose.getRotation().unaryMinus()));
-    Logger.getInstance().recordOutput("ComponentPoses", armPose, endPose);
+    Logger.getInstance().recordOutput("ComponentPoses", armPose, endPose, endPose);
+
+    revArmObject.setAngle(Units.radiansToDegrees(revArmAngle - Math.PI / 2));
+    revIntakeObject.setAngle(Units.radiansToDegrees(-revArmAngle));
+    Logger.getInstance().recordOutput("ArmMechanism", revArmMechanism);
+
+    adjustedRevArmObject.setAngle(Units.radiansToDegrees(revArmAngle + 0.2 - Math.PI / 2));
+    adjustedRevIntakeObject.setAngle(Units.radiansToDegrees(-(revArmAngle + 0.2)));
+    Logger.getInstance().recordOutput("ArmMechanismAdjusted", adjustedRevArmMechanism);
 
     Logger.getInstance()
         .recordOutput(
