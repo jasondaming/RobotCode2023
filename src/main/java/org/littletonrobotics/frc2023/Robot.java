@@ -32,6 +32,7 @@ public class Robot extends LoggedRobot {
   private Command autoCommand;
   private double autoStart;
   private boolean autoMessagePrinted;
+  private LedTesting ledTesting = new LedTesting();
 
   private final Alert logNoFileAlert =
       new Alert("No log path set for current robot. Data will NOT be logged.", AlertType.WARNING);
@@ -151,7 +152,7 @@ public class Robot extends LoggedRobot {
         autoMessagePrinted = true;
       }
     }
-
+    ledTesting.periodic();
     Threads.setCurrentThreadPriority(true, 10);
   }
 
