@@ -29,7 +29,7 @@ public final class Constants {
         return robot;
       }
     } else {
-      return robot;
+      return RobotType.ROBOT_SIMBOT;
     }
   }
 

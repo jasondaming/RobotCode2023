@@ -26,13 +26,13 @@ import org.littletonrobotics.frc2023.oi.OISelector;
 import org.littletonrobotics.frc2023.oi.OverrideOI;
 import org.littletonrobotics.frc2023.subsystems.apriltagvision.AprilTagVision;
 import org.littletonrobotics.frc2023.subsystems.apriltagvision.AprilTagVisionIO;
-import org.littletonrobotics.frc2023.subsystems.apriltagvision.AprilTagVisionIONorthstar;
+import org.littletonrobotics.frc2023.subsystems.apriltagvision.AprilTagVisionIOLimelight;
 import org.littletonrobotics.frc2023.subsystems.drive.Drive;
 import org.littletonrobotics.frc2023.subsystems.drive.GyroIO;
-import org.littletonrobotics.frc2023.subsystems.drive.GyroIOPigeon2;
+import org.littletonrobotics.frc2023.subsystems.drive.GyroIOPigeon;
 import org.littletonrobotics.frc2023.subsystems.drive.ModuleIO;
+import org.littletonrobotics.frc2023.subsystems.drive.ModuleIOFalcon;
 import org.littletonrobotics.frc2023.subsystems.drive.ModuleIOSim;
-import org.littletonrobotics.frc2023.subsystems.drive.ModuleIOSparkMax;
 import org.littletonrobotics.frc2023.util.Alert;
 import org.littletonrobotics.frc2023.util.Alert.AlertType;
 import org.littletonrobotics.frc2023.util.SparkMaxBurnManager;
@@ -65,12 +65,12 @@ public class RobotContainer {
         case ROBOT_2023P:
           drive =
               new Drive(
-                  new GyroIOPigeon2(),
-                  new ModuleIOSparkMax(0),
-                  new ModuleIOSparkMax(1),
-                  new ModuleIOSparkMax(2),
-                  new ModuleIOSparkMax(3));
-          aprilTagVision = new AprilTagVision(new AprilTagVisionIONorthstar("northstar"));
+                  new GyroIOPigeon(),
+                  new ModuleIOFalcon(0),
+                  new ModuleIOFalcon(1),
+                  new ModuleIOFalcon(2),
+                  new ModuleIOFalcon(3));
+          aprilTagVision = new AprilTagVision(new AprilTagVisionIOLimelight("limelight"));
           break;
         case ROBOT_SIMBOT:
           drive =

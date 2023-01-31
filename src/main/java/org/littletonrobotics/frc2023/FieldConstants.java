@@ -254,4 +254,32 @@ public final class FieldConstants {
               Units.inchesToMeters(42.19),
               Units.inchesToMeters(18.22),
               new Rotation3d()));
+
+  public static final Map<Integer, Pose3d> blueACorridor =
+      Map.of(
+          1,
+          new Pose3d(5.3, 4.46, 0, new Rotation3d(0.0, 0.0, Math.PI)),
+          2,
+          new Pose3d(2.53, 4.46, 0, new Rotation3d(0.0, 0.0, Math.PI)));
+
+  public static final Map<Integer, Pose3d> blueBCorridor =
+      Map.of(
+          1,
+          new Pose3d(5.3, 1.08, 0, new Rotation3d(0.0, 0.0, Math.PI)),
+          2,
+          new Pose3d(2.53, 1.08, 0, new Rotation3d(0.0, 0.0, Math.PI)));
+
+  public static final Map<Integer, Pose3d> redBCorridor =
+      Map.of(
+          1,
+          new Pose3d(11.27, 4.46, 0, new Rotation3d()),
+          2,
+          new Pose3d(13.98, 4.46, 0, new Rotation3d()));
+
+  public static final Map<Integer, Pose3d> redACorridor =
+      Map.of(
+          1,
+          new Pose3d(11.27, 1.08, 0, new Rotation3d()),
+          2,
+          new Pose3d(13.98, 1.08, 0, new Rotation3d()));
 }
