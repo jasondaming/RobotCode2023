@@ -282,4 +282,146 @@ public final class FieldConstants {
           new Pose3d(11.27, 1.08, 0, new Rotation3d()),
           2,
           new Pose3d(13.98, 1.08, 0, new Rotation3d()));
+
+  public static final Map<Integer, Pose3d> blueASubstation =
+      Map.of(
+          1,
+          new Pose3d(10.19, 6.77, 0, new Rotation3d()),
+          2,
+          new Pose3d(15.75, 7.33, 0, new Rotation3d()));
+
+  public static final Map<Integer, Pose3d> blueBSubstation =
+      Map.of(
+          1,
+          new Pose3d(10.19, 6.77, 0, new Rotation3d()),
+          2,
+          new Pose3d(15.75, 6.0, 0, new Rotation3d()));
+
+  public static final Map<Integer, Pose3d> redBSubstation =
+      Map.of(
+          1,
+          new Pose3d(6.32, 6.77, 0, new Rotation3d(0.0, 0.0, Math.PI)),
+          2,
+          new Pose3d(0.79, 7.33, 0, new Rotation3d(0.0, 0.0, Math.PI)));
+
+  public static final Map<Integer, Pose3d> redASubstation =
+      Map.of(
+          1,
+          new Pose3d(6.32, 6.77, 0, new Rotation3d(0.0, 0.0, Math.PI)),
+          2,
+          new Pose3d(0.79, 6.0, 0, new Rotation3d(0.0, 0.0, Math.PI)));
+
+  public static final Map<Integer, Pose3d> scoringBlue =
+      Map.of(
+          1,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(196.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          2,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(174.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          3,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(152.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          4,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(130.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          5,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(108.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          6,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(86.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          7,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(64.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          8,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(42.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)),
+          9,
+          new Pose3d(
+              1.73,
+              Units.inchesToMeters(20.19),
+              0,
+              new Rotation3d(0.0, 0.0, Math.PI)));
+
+  public static final Map<Integer, Pose3d> scoringRed =
+      Map.of(
+          9,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(196.19),
+              0,
+              new Rotation3d()),
+          8,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(174.19),
+              0,
+              new Rotation3d()),
+          7,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(152.19),
+              0,
+              new Rotation3d()),
+          6,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(130.19),
+              0,
+              new Rotation3d()),
+          5,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(108.19),
+              0,
+              new Rotation3d()),
+          4,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(86.19),
+              0,
+              new Rotation3d()),
+          3,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(64.19),
+              0,
+              new Rotation3d()),
+          2,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(42.19),
+              0,
+              new Rotation3d()),
+          1,
+          new Pose3d(
+              14.81,
+              Units.inchesToMeters(20.19),
+              0,
+              new Rotation3d()));
 }

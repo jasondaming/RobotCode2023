@@ -19,7 +19,7 @@ public class AprilTagVisionIOLimelight implements AprilTagVisionIO {
 
   public void updateInputs(AprilTagVisionIOInputs inputs) {
     inputs.timestamps = limelightTable.getEntry("botpose").getDoubleArray(new double[6]);
-    inputs.frames = new double[0][];
+    inputs.frames = new double[1][];
     inputs.fps = limelightTable.getEntry("botpose").getInteger(0);
   }
 }

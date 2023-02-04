@@ -13,6 +13,7 @@ import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import java.util.List;
 import org.littletonrobotics.frc2023.Constants.Mode;
@@ -52,6 +53,12 @@ public class RobotContainer {
   // Choosers
   private final LoggedDashboardChooser<Command> autoChooser =
       new LoggedDashboardChooser<>("Auto Routine");
+
+  // Grid Selection Variables
+  private int grid = 0;
+  private int position = 0;
+  private int column = 0;
+  private int level = 0;
 
   public RobotContainer() {
     // Check if flash should be burned
@@ -112,8 +119,7 @@ public class RobotContainer {
             drive,
             () -> handheldOI.getLeftDriveX(),
             () -> handheldOI.getLeftDriveY(),
-            () -> handheldOI.getRightDriveY(),
-            () -> overrideOI.getRobotRelative()));
+            () -> handheldOI.getRightDriveY()));
     aprilTagVision.setDataInterfaces(drive::getPose, drive::addVisionData);
 
     // Set up auto routines
@@ -162,14 +168,33 @@ public class RobotContainer {
     handheldOI = OISelector.findHandheldOI();
 
     // *** DRIVER CONTROLS ***
-    var target =
-        FieldConstants.aprilTags
-            .get(2)
-            .toPose2d()
-            .transformBy(new Transform2d(new Translation2d(1.0, 0.0), new Rotation2d()));
-    handheldOI.getDriverAssist().whileTrue(new HoldPose(drive, target));
+    var target = FieldConstants.aprilTags
+        .get(2)
+        .toPose2d()
+        .transformBy(new Transform2d(new Translation2d(1.0, 0.0), new Rotation2d()));
+    handheldOI.getScoreA().whileTrue(new HoldPose(drive, target));
 
     // *** OPERATOR CONTROLS ***
+    overrideOI.setGridLeft().onTrue(Commands.runOnce(() -> grid = 0).andThen(() -> updateGrid()));
+    overrideOI.setGridCenter().onTrue(Commands.runOnce(() -> grid = 3).andThen(() -> updateGrid()));
+    overrideOI.setGridRight().onTrue(Commands.runOnce(() -> grid = 6).andThen(() -> updateGrid()));
+  }
+
+  public void updateGrid() {
+    if (position < 4) {
+      level = 3;
+    } else if (position > 3 && position < 7) {
+      level = 2;
+    } else {
+      level = 1;
+    }
+    var positionadd = 0;
+    if (position % 3 == 0) {
+      positionadd = 3;
+    } else {
+      positionadd = position % 3;
+    }
+    column = grid + positionadd;
   }
 
   /** Passes the autonomous command to the {@link Robot} class. */

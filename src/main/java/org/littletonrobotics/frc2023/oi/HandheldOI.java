@@ -29,7 +29,19 @@ public class HandheldOI {
     return 0.0;
   }
 
-  public Trigger getDriverAssist() {
+  public Trigger getScoreA() {
+    return dummyTrigger;
+  }
+
+  public Trigger getScoreB() {
+    return dummyTrigger;
+  }
+
+  public Trigger getLoadA() {
+    return dummyTrigger;
+  }
+
+  public Trigger getLoadB() {
     return dummyTrigger;
   }
 

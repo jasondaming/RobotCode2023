@@ -100,8 +100,7 @@ public class Module {
     var optimizedState = SwerveModuleState.optimize(state, getAngle());
 
     // Run turn controller
-    io.setTurnVoltage(
-        turnFeedback.calculate(getAngle().getRadians(), optimizedState.angle.getRadians()));
+    io.setTurnAngle(optimizedState.angle.getRadians());
 
     // Update velocity based on turn error
     optimizedState.speedMetersPerSecond *= Math.cos(turnFeedback.getPositionError());
@@ -120,7 +119,7 @@ public class Module {
    * periodically.
    */
   public void runCharacterization(double volts) {
-    io.setTurnVoltage(turnFeedback.calculate(getAngle().getRadians(), 0.0));
+    io.setTurnAngle(0.0);
     io.setDriveVoltage(volts);
   }
 

@@ -27,7 +27,6 @@ public class DriveWithJoysticks extends CommandBase {
   private final Supplier<Double> leftXSupplier;
   private final Supplier<Double> leftYSupplier;
   private final Supplier<Double> rightYSupplier;
-  private final Supplier<Boolean> robotRelativeOverride;
 
   private static final LoggedDashboardChooser<Double> linearSpeedLimitChooser =
       new LoggedDashboardChooser<>("Linear Speed Limit");
@@ -50,14 +49,12 @@ public class DriveWithJoysticks extends CommandBase {
       Drive drive,
       Supplier<Double> leftXSupplier,
       Supplier<Double> leftYSupplier,
-      Supplier<Double> rightYSupplier,
-      Supplier<Boolean> robotRelativeOverride) {
+      Supplier<Double> rightYSupplier) {
     addRequirements(drive);
     this.drive = drive;
     this.leftXSupplier = leftXSupplier;
     this.leftYSupplier = leftYSupplier;
     this.rightYSupplier = rightYSupplier;
-    this.robotRelativeOverride = robotRelativeOverride;
   }
 
   @Override
@@ -95,20 +92,6 @@ public class DriveWithJoysticks extends CommandBase {
             linearVelocity.getX() * drive.getMaxLinearSpeedMetersPerSec(),
             linearVelocity.getY() * drive.getMaxLinearSpeedMetersPerSec(),
             rightY * drive.getMaxAngularSpeedRadPerSec());
-
-    // Convert from field relative
-    if (!robotRelativeOverride.get()) {
-      var driveRotation = drive.getRotation();
-      if (DriverStation.getAlliance() == Alliance.Red) {
-        driveRotation = driveRotation.plus(new Rotation2d(Math.PI));
-      }
-      speeds =
-          ChassisSpeeds.fromFieldRelativeSpeeds(
-              speeds.vxMetersPerSecond,
-              speeds.vyMetersPerSecond,
-              speeds.omegaRadiansPerSecond,
-              driveRotation);
-    }
 
     // Send to drive
     drive.runVelocity(speeds);

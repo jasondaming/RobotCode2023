@@ -42,11 +42,6 @@ public class DualHandheldOI extends HandheldOI {
   }
 
   @Override
-  public Trigger getDriverAssist() {
-    return driverController.leftBumper();
-  }
-
-  @Override
   public void setDriverRumble(double percent) {
     driverController.getHID().setRumble(RumbleType.kRightRumble, percent);
   }

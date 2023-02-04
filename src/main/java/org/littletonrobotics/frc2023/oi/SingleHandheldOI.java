@@ -40,17 +40,7 @@ public class SingleHandheldOI extends HandheldOI {
   }
 
   @Override
-  public Trigger getDriverAssist() {
-    return controller.leftBumper();
-  }
-
-  @Override
   public void setDriverRumble(double percent) {
-    controller.getHID().setRumble(RumbleType.kRightRumble, percent);
-  }
-
-  @Override
-  public void setOperatorRumble(double percent) {
     controller.getHID().setRumble(RumbleType.kRightRumble, percent);
   }
 }

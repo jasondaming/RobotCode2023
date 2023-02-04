@@ -8,6 +8,7 @@
 package org.littletonrobotics.frc2023.subsystems.drive;
 
 import com.ctre.phoenix.ErrorCode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.math.util.Units;
 import org.littletonrobotics.frc2023.Constants;
@@ -21,10 +22,11 @@ public class GyroIOPigeon implements GyroIO {
   public GyroIOPigeon() {
     switch (Constants.getRobot()) {
       case ROBOT_2023P:
-        pigeon = new PigeonIMU(0);
+        TalonSRX pigeonTalon = new TalonSRX(5);
+        pigeon = new PigeonIMU(pigeonTalon);
         break;
       default:
-        throw new RuntimeException("Invalid robot for GyroIOPigeon2");
+        throw new RuntimeException("Invalid robot for GyroIOPigeon");
     }
 
     pigeon.configFactoryDefault();
