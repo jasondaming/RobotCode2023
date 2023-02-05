@@ -10,7 +10,6 @@ package org.littletonrobotics.frc2023.subsystems.drive;
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -33,8 +32,8 @@ public class ModuleIOFalcon implements ModuleIO {
       SdsModuleConfigurations.MK4_L1.getDriveReduction() / 2048.0;
   private final double driveSensorVelocityCoefficient =
       driveSensorPositionCoefficient * 10.0 * 60.0;
-  private final double turnSensorPositionCoefficient = 2.0 * Math.PI *
-      SdsModuleConfigurations.MK4_L1.getSteerReduction() / 2048.0;
+  private final double turnSensorPositionCoefficient =
+      2.0 * Math.PI * SdsModuleConfigurations.MK4_L1.getSteerReduction() / 2048.0;
   private final double turnSensorVelocityCoefficient = turnSensorPositionCoefficient * 10.0 * 60.0;
 
   private final CANCoder turnAbsoluteEncoder;
@@ -107,8 +106,8 @@ public class ModuleIOFalcon implements ModuleIO {
     driveFalcon.setSensorPhase(true);
     turnFalcon.setSensorPhase(true);
 
-    //driveFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 250, 250);
-    //turnFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 250, 250);
+    // driveFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 250, 250);
+    // turnFalcon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 250, 250);
 
     turnFalcon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 250);
     turnFalcon.setSelectedSensorPosition(

@@ -40,6 +40,31 @@ public class SingleHandheldOI extends HandheldOI {
   }
 
   @Override
+  public Trigger resetGyro() {
+    return controller.start();
+  }
+
+  @Override
+  public Trigger getScoreA() {
+    return controller.x();
+  }
+
+  @Override
+  public Trigger getScoreB() {
+    return controller.a();
+  }
+
+  @Override
+  public Trigger getLoadA() {
+    return controller.y();
+  }
+
+  @Override
+  public Trigger getLoadB() {
+    return controller.b();
+  }
+
+  @Override
   public void setDriverRumble(double percent) {
     controller.getHID().setRumble(RumbleType.kRightRumble, percent);
   }

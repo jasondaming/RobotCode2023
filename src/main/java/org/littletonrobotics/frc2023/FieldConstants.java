@@ -13,6 +13,8 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -255,32 +257,57 @@ public final class FieldConstants {
               Units.inchesToMeters(18.22),
               new Rotation3d()));
 
-  public static final Map<Integer, Pose3d> blueACorridor =
+  public enum Corridor {
+    A,
+    B
+  }
+
+  private enum Substation {
+    A,
+    B
+  }
+
+  public static final Map<Corridor, Map<Alliance, List<Pose3d>>> corridor =
       Map.of(
-          1,
+          Corridor.A,
+          Map.of(
+              Alliance.Blue,
+              List.of(
+                  new Pose3d(5.3, 4.46, 0, new Rotation3d(0.0, 0.0, Math.PI)),
+                  new Pose3d(2.53, 4.46, 0, new Rotation3d(0.0, 0.0, Math.PI))),
+              Alliance.Red,
+              List.of(
+                  new Pose3d(11.27, 1.08, 0, new Rotation3d()),
+                  new Pose3d(13.98, 1.08, 0, new Rotation3d()))),
+          Corridor.B,
+          Map.of(
+              Alliance.Blue,
+              List.of(
+                  new Pose3d(5.3, 1.08, 0, new Rotation3d(0.0, 0.0, Math.PI)),
+                  new Pose3d(2.53, 1.08, 0, new Rotation3d(0.0, 0.0, Math.PI))),
+              Alliance.Red,
+              List.of(
+                  new Pose3d(11.27, 4.46, 0, new Rotation3d()),
+                  new Pose3d(13.98, 4.46, 0, new Rotation3d()))));
+
+  public static final List<Pose3d> blueACorridor =
+      List.of(
           new Pose3d(5.3, 4.46, 0, new Rotation3d(0.0, 0.0, Math.PI)),
-          2,
           new Pose3d(2.53, 4.46, 0, new Rotation3d(0.0, 0.0, Math.PI)));
 
-  public static final Map<Integer, Pose3d> blueBCorridor =
-      Map.of(
-          1,
+  public static final List<Pose3d> blueBCorridor =
+      List.of(
           new Pose3d(5.3, 1.08, 0, new Rotation3d(0.0, 0.0, Math.PI)),
-          2,
           new Pose3d(2.53, 1.08, 0, new Rotation3d(0.0, 0.0, Math.PI)));
 
-  public static final Map<Integer, Pose3d> redBCorridor =
-      Map.of(
-          1,
+  public static final List<Pose3d> redBCorridor =
+      List.of(
           new Pose3d(11.27, 4.46, 0, new Rotation3d()),
-          2,
           new Pose3d(13.98, 4.46, 0, new Rotation3d()));
 
-  public static final Map<Integer, Pose3d> redACorridor =
-      Map.of(
-          1,
+  public static final List<Pose3d> redACorridor =
+      List.of(
           new Pose3d(11.27, 1.08, 0, new Rotation3d()),
-          2,
           new Pose3d(13.98, 1.08, 0, new Rotation3d()));
 
   public static final Map<Integer, Pose3d> blueASubstation =
@@ -314,114 +341,42 @@ public final class FieldConstants {
   public static final Map<Integer, Pose3d> scoringBlue =
       Map.of(
           1,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(196.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(196.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           2,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(174.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(174.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           3,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(152.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(152.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           4,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(130.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(130.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           5,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(108.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(108.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           6,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(86.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(86.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           7,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(64.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(64.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           8,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(42.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)),
+          new Pose3d(1.73, Units.inchesToMeters(42.19), 0, new Rotation3d(0.0, 0.0, Math.PI)),
           9,
-          new Pose3d(
-              1.73,
-              Units.inchesToMeters(20.19),
-              0,
-              new Rotation3d(0.0, 0.0, Math.PI)));
+          new Pose3d(1.73, Units.inchesToMeters(20.19), 0, new Rotation3d(0.0, 0.0, Math.PI)));
 
   public static final Map<Integer, Pose3d> scoringRed =
       Map.of(
           9,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(196.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(196.19), 0, new Rotation3d()),
           8,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(174.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(174.19), 0, new Rotation3d()),
           7,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(152.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(152.19), 0, new Rotation3d()),
           6,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(130.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(130.19), 0, new Rotation3d()),
           5,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(108.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(108.19), 0, new Rotation3d()),
           4,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(86.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(86.19), 0, new Rotation3d()),
           3,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(64.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(64.19), 0, new Rotation3d()),
           2,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(42.19),
-              0,
-              new Rotation3d()),
+          new Pose3d(14.81, Units.inchesToMeters(42.19), 0, new Rotation3d()),
           1,
-          new Pose3d(
-              14.81,
-              Units.inchesToMeters(20.19),
-              0,
-              new Rotation3d()));
+          new Pose3d(14.81, Units.inchesToMeters(20.19), 0, new Rotation3d()));
 }

@@ -8,20 +8,19 @@
 package org.littletonrobotics.frc2023;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import java.util.ArrayList;
 import java.util.List;
 import org.littletonrobotics.frc2023.Constants.Mode;
 import org.littletonrobotics.frc2023.commands.DriveTrajectory;
 import org.littletonrobotics.frc2023.commands.DriveWithJoysticks;
 import org.littletonrobotics.frc2023.commands.FeedForwardCharacterization;
 import org.littletonrobotics.frc2023.commands.FeedForwardCharacterization.FeedForwardCharacterizationData;
-import org.littletonrobotics.frc2023.commands.HoldPose;
 import org.littletonrobotics.frc2023.oi.HandheldOI;
 import org.littletonrobotics.frc2023.oi.OISelector;
 import org.littletonrobotics.frc2023.oi.OverrideOI;
@@ -168,11 +167,19 @@ public class RobotContainer {
     handheldOI = OISelector.findHandheldOI();
 
     // *** DRIVER CONTROLS ***
-    var target = FieldConstants.aprilTags
-        .get(2)
-        .toPose2d()
-        .transformBy(new Transform2d(new Translation2d(1.0, 0.0), new Rotation2d()));
-    handheldOI.getScoreA().whileTrue(new HoldPose(drive, target));
+    /*     DriveTrajectory traj;
+    if (DriverStation.getAlliance() == Alliance.Red) {
+      var poses = new ArrayList<>(FieldConstants.redACorridor);
+      poses.add(FieldConstants.scoringRed.get(column));
+      traj = poseTrajectory(poses);
+    } else {
+      var poses = new ArrayList<>(FieldConstants.blueACorridor);
+      poses.add(FieldConstants.scoringBlue.get(column));
+      traj = poseTrajectory(poses);
+    }
+    List<Pose3d> poses = FieldConstants.corridor.get(FieldConstants.Corridor.A).get(Alliance.Red);
+    traj.andThen(null)
+    handheldOI.getScoreA().whileTrue(scoringTraj()); */
 
     // *** OPERATOR CONTROLS ***
     overrideOI.setGridLeft().onTrue(Commands.runOnce(() -> grid = 0).andThen(() -> updateGrid()));
@@ -200,5 +207,13 @@ public class RobotContainer {
   /** Passes the autonomous command to the {@link Robot} class. */
   public Command getAutonomousCommand() {
     return autoChooser.get();
+  }
+
+  private DriveTrajectory poseTrajectory(List<Pose3d> poses) {
+    List<Waypoint> waypoints = new ArrayList<>();
+    for (Pose3d pose : poses) {
+      waypoints.add(Waypoint.fromHolonomicPose(pose.toPose2d()));
+    }
+    return new DriveTrajectory(drive, waypoints);
   }
 }

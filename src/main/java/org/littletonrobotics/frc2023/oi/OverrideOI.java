@@ -64,7 +64,7 @@ public class OverrideOI {
     return overrides.button(6);
   }
 
-    public Trigger setPositionML() {
+  public Trigger setPositionML() {
     if (overrides == null) {
       return new Trigger();
     }
@@ -85,7 +85,7 @@ public class OverrideOI {
     return overrides.button(9);
   }
 
-    public Trigger setPositionBL() {
+  public Trigger setPositionBL() {
     if (overrides == null) {
       return new Trigger();
     }

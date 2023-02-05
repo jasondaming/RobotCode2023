@@ -9,7 +9,6 @@ package org.littletonrobotics.frc2023.oi;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /** Class for controlling the robot with two Xbox controllers. */
 public class DualHandheldOI extends HandheldOI {
