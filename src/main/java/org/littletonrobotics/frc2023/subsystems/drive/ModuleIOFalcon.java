@@ -94,9 +94,9 @@ public class ModuleIOFalcon implements ModuleIO {
     turnConfiguration.supplyCurrLimit.currentLimit = 20.0;
     driveConfiguration.voltageCompSaturation = 12.0;
     turnConfiguration.voltageCompSaturation = 12.0;
-    turnConfiguration.slot0.kP = 0.2;
+    turnConfiguration.slot0.kP = 0.02;
     turnConfiguration.slot0.kI = 0.0;
-    turnConfiguration.slot0.kD = 0.1;
+    turnConfiguration.slot0.kD = 0.01;
     driveFalcon.configAllSettings(driveConfiguration);
     turnFalcon.configAllSettings(turnConfiguration);
 

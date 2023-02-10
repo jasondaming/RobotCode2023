@@ -24,85 +24,99 @@ public class OverrideOI {
 
   public Trigger setGridLeft() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(1);
   }
 
   public Trigger setGridCenter() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(2);
   }
 
   public Trigger setGridRight() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(3);
   }
 
   public Trigger setPositionUL() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(4);
   }
 
   public Trigger setPositionUC() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(5);
   }
 
   public Trigger setPositionUR() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(6);
   }
 
   public Trigger setPositionML() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(7);
   }
 
   public Trigger setPositionMC() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(8);
   }
 
   public Trigger setPositionMR() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(9);
   }
 
   public Trigger setPositionBL() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(10);
   }
 
   public Trigger setPositionBC() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(11);
   }
 
   public Trigger setPositionBR() {
     if (overrides == null) {
-      return new Trigger();
+      return new Trigger(() -> false);
     }
     return overrides.button(12);
+  }
+
+  public Trigger cubeButton() {
+    if (overrides == null) {
+      return new Trigger(() -> false);
+    }
+    return overrides.axisLessThan(0, -0.1);
+  }
+
+  public Trigger coneButton() {
+    if (overrides == null) {
+      return new Trigger(() -> false);
+    }
+    return overrides.axisLessThan(1, -0.1);
   }
 }

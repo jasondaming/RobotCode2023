@@ -182,9 +182,10 @@ public class RobotContainer {
     handheldOI.getScoreA().whileTrue(scoringTraj()); */
 
     // *** OPERATOR CONTROLS ***
-    overrideOI.setGridLeft().onTrue(Commands.runOnce(() -> grid = 0).andThen(() -> updateGrid()));
-    overrideOI.setGridCenter().onTrue(Commands.runOnce(() -> grid = 3).andThen(() -> updateGrid()));
-    overrideOI.setGridRight().onTrue(Commands.runOnce(() -> grid = 6).andThen(() -> updateGrid()));
+    //overrideOI.setGridLeft().onTrue(Commands.runOnce(() -> grid = 0).andThen(() -> updateGrid()));
+    //overrideOI.setGridCenter().onTrue(Commands.runOnce(() -> grid = 3).andThen(() -> updateGrid()));
+    //overrideOI.setGridRight().onTrue(Commands.runOnce(() -> grid = 6).andThen(() -> updateGrid()));
+    overrideOI.coneButton().onTrue(Commands.runOnce(() -> ))
   }
 
   public void updateGrid() {

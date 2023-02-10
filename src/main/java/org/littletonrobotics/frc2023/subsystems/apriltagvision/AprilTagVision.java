@@ -15,9 +15,7 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +24,8 @@ import java.util.function.Supplier;
 import org.littletonrobotics.frc2023.Constants;
 import org.littletonrobotics.frc2023.FieldConstants;
 import org.littletonrobotics.frc2023.subsystems.apriltagvision.AprilTagVisionIO.AprilTagVisionIOInputs;
-import org.littletonrobotics.frc2023.util.GeomUtil;
 import org.littletonrobotics.frc2023.util.PolynomialRegression;
 import org.littletonrobotics.frc2023.util.PoseEstimator.TimestampedVisionUpdate;
-import org.littletonrobotics.junction.Logger;
 
 public class AprilTagVision extends SubsystemBase {
   private static final double ambiguityThreshold = 0.15;
@@ -111,7 +107,7 @@ public class AprilTagVision extends SubsystemBase {
   }
 
   public void periodic() {
-    for (int i = 0; i < io.length; i++) {
+    /*     for (int i = 0; i < io.length; i++) {
       io[i].updateInputs(inputs[i]);
       Logger.getInstance().processInputs("AprilTagVision/Inst" + Integer.toString(i), inputs[i]);
     }
@@ -229,7 +225,7 @@ public class AprilTagVision extends SubsystemBase {
             "AprilTagVision/TargetPoses", targetPose3ds.toArray(new Pose3d[targetPose3ds.size()]));
 
     // Send results to pose esimator
-    visionConsumer.accept(visionUpdates);
+    visionConsumer.accept(visionUpdates); */
   }
 
   private static Pose3d openCVPoseToWPILibPose(Vector<N3> tvec, Vector<N3> rvec) {

@@ -18,12 +18,15 @@ public interface AprilTagVisionIO {
 
     @Override
     public void toLog(LogTable table) {
-      table.put("Timestamps", timestamps);
-      table.put("FrameCount", frames.length);
-      for (int i = 0; i < frames.length; i++) {
-        table.put("Frame/" + Integer.toString(i), frames[i]);
+      System.out.println(frames.length);
+      if (frames.length != 0) {
+        table.put("Timestamps", timestamps);
+        table.put("FrameCount", frames.length);
+        for (int i = 0; i < frames.length; i++) {
+          table.put("Frame/" + Integer.toString(i), frames[i]);
+        }
+        table.put("Fps", fps);
       }
-      table.put("Fps", fps);
     }
 
     @Override
