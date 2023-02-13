@@ -63,8 +63,8 @@ public class Drive extends SubsystemBase {
       case ROBOT_2023P:
       case ROBOT_SIMBOT:
         maxLinearSpeed.initDefault(Units.feetToMeters(14.5));
-        trackWidthX.initDefault(Units.inchesToMeters(25.0));
-        trackWidthY.initDefault(Units.inchesToMeters(24.0));
+        trackWidthX.initDefault(Units.inchesToMeters(26.0));
+        trackWidthY.initDefault(Units.inchesToMeters(23.0));
         break;
       default:
         break;

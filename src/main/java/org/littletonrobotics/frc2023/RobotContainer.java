@@ -38,6 +38,7 @@ import org.littletonrobotics.frc2023.util.Alert.AlertType;
 import org.littletonrobotics.frc2023.util.SparkMaxBurnManager;
 import org.littletonrobotics.frc2023.util.trajectory.Waypoint;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
+import org.littletonrobotics.junction.networktables.LoggedDashboardNumber;
 
 public class RobotContainer {
 
@@ -54,10 +55,8 @@ public class RobotContainer {
       new LoggedDashboardChooser<>("Auto Routine");
 
   // Grid Selection Variables
-  private int grid = 0;
-  private int position = 0;
-  private int column = 0;
-  private int level = 0;
+  private LoggedDashboardNumber column = new LoggedDashboardNumber("Column", 0);
+  private LoggedDashboardNumber level = new LoggedDashboardNumber("Level", 0);
 
   public RobotContainer() {
     // Check if flash should be burned
@@ -182,27 +181,20 @@ public class RobotContainer {
     handheldOI.getScoreA().whileTrue(scoringTraj()); */
 
     // *** OPERATOR CONTROLS ***
-    //overrideOI.setGridLeft().onTrue(Commands.runOnce(() -> grid = 0).andThen(() -> updateGrid()));
-    //overrideOI.setGridCenter().onTrue(Commands.runOnce(() -> grid = 3).andThen(() -> updateGrid()));
-    //overrideOI.setGridRight().onTrue(Commands.runOnce(() -> grid = 6).andThen(() -> updateGrid()));
-    overrideOI.coneButton().onTrue(Commands.runOnce(() -> ))
-  }
+    //overrideOI.coneButton().onTrue(Commands.runOnce(() -> ))
+    overrideOI.setColumn1().onTrue(Commands.runOnce(() -> this.column.set(1)));
+    overrideOI.setColumn2().onTrue(Commands.runOnce(() -> this.column.set(2)));
+    overrideOI.setColumn3().onTrue(Commands.runOnce(() -> this.column.set(3)));
+    overrideOI.setColumn4().onTrue(Commands.runOnce(() -> this.column.set(4)));
+    overrideOI.setColumn5().onTrue(Commands.runOnce(() -> this.column.set(5)));
+    overrideOI.setColumn6().onTrue(Commands.runOnce(() -> this.column.set(6)));
+    overrideOI.setColumn7().onTrue(Commands.runOnce(() -> this.column.set(7)));
+    overrideOI.setColumn8().onTrue(Commands.runOnce(() -> this.column.set(8)));
+    overrideOI.setColumn9().onTrue(Commands.runOnce(() -> this.column.set(9)));
 
-  public void updateGrid() {
-    if (position < 4) {
-      level = 3;
-    } else if (position > 3 && position < 7) {
-      level = 2;
-    } else {
-      level = 1;
-    }
-    var positionadd = 0;
-    if (position % 3 == 0) {
-      positionadd = 3;
-    } else {
-      positionadd = position % 3;
-    }
-    column = grid + positionadd;
+    overrideOI.setHigh().onTrue(Commands.runOnce(() -> this.level.set(3)));
+    overrideOI.setMid().onTrue(Commands.runOnce(() -> this.level.set(2)));
+    overrideOI.setLow().onTrue(Commands.runOnce(() -> this.level.set(1)));
   }
 
   /** Passes the autonomous command to the {@link Robot} class. */

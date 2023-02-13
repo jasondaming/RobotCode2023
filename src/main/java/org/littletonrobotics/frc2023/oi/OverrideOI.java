@@ -22,84 +22,84 @@ public class OverrideOI {
     overrides = new CommandGenericHID(port);
   }
 
-  public Trigger setGridLeft() {
+  public Trigger setHigh() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(1);
   }
 
-  public Trigger setGridCenter() {
+  public Trigger setMid() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(2);
   }
 
-  public Trigger setGridRight() {
+  public Trigger setLow() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(3);
   }
 
-  public Trigger setPositionUL() {
+  public Trigger setColumn1() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(4);
   }
 
-  public Trigger setPositionUC() {
+  public Trigger setColumn2() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(5);
   }
 
-  public Trigger setPositionUR() {
+  public Trigger setColumn3() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(6);
   }
 
-  public Trigger setPositionML() {
+  public Trigger setColumn4() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(7);
   }
 
-  public Trigger setPositionMC() {
+  public Trigger setColumn5() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(8);
   }
 
-  public Trigger setPositionMR() {
+  public Trigger setColumn6() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(9);
   }
 
-  public Trigger setPositionBL() {
+  public Trigger setColumn7() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(10);
   }
 
-  public Trigger setPositionBC() {
+  public Trigger setColumn8() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
     return overrides.button(11);
   }
 
-  public Trigger setPositionBR() {
+  public Trigger setColumn9() {
     if (overrides == null) {
       return new Trigger(() -> false);
     }
